@@ -1,0 +1,36 @@
+# Prometheus configuration for fraud detection system
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'fraud-detection-system'
+
+scrape_configs:
+  # Spark Consumer metrics
+  - job_name: 'fraud_consumer'
+    static_configs:
+      - targets: ['host.docker.internal:8000']
+        labels:
+          component: 'spark_consumer'
+    scrape_interval: 15s
+    scrape_timeout: 10s
+
+  # BentoML Service metrics
+  - job_name: 'bentoml_service'
+    static_configs:
+      - targets: ['bentoml-service:5000']
+        labels:
+          component: 'bentoml_service'
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+    scrape_timeout: 10s
+
+  # PostgreSQL (if using postgres_exporter)
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres:5432']
+        labels:
+          component: 'postgres'
+    scrape_interval: 30s
+    scrape_timeout: 10s
