@@ -380,7 +380,7 @@ MIT License - See LICENSE file for details
 
 ## Author
 
-**Priyanshu Panda** - [@priyanshpanda](https://github.com/priyanshpanda)
+**Priyansh Panda** - [@priyanshpanda](https://github.com/priyanshpanda)
 
 ---
 
